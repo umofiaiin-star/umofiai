@@ -18,7 +18,8 @@ const UMOFI_CONFIG = {
   youtube:    'https://www.youtube.com/',
 
   // ── FORM ENDPOINT ────────────────────────────────────────
-  formEndpoint: 'https://formspree.io/f/xwleeekq' , // ╔══════════════════════════════════════════════════════════╗
+  formEndpoint: '
+// ╔══════════════════════════════════════════════════════════╗
 // ║           UMOFI AI — EASY CONFIGURATION BLOCK           ║
 // ║  Replace values below with your own details.            ║
 // ║  Do NOT change anything outside this block.             ║
