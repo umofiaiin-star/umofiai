@@ -18,7 +18,7 @@ const UMOFI_CONFIG = {
   youtube:    'https://www.youtube.com/',
 
   // ── FORM ENDPOINT ────────────────────────────────────────
-  formEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
+  formEndpoint: 'https://formspree.io/f/xwleeekq',
 };
 // ═══════════════════════════════════════════════════════════
 
