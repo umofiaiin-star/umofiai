@@ -1,36 +1,26 @@
+// ╔══════════════════════════════════════════════════════════╗
+// ║           UMOFI AI — EASY CONFIGURATION BLOCK           ║
+// ║  Replace values below with your own details.            ║
+// ║  Do NOT change anything outside this block.             ║
+// ╚══════════════════════════════════════════════════════════╝
+const UMOFI_CONFIG = {
+  // ── CONTACT DETAILS ──────────────────────────────────────
+  phone:      '+91 95532 10805',
+  phoneLink:  'tel:+919553210805',
+  email:      'Umofiai.in@gmail.com',
+  emailLink:  'mailto:Umofiai.in@gmail.com',
+  whatsapp:   'https://wa.me/919553210805',
 
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Umofi AI",
-  "description": "AI services for businesses in Hyderabad, lead generation, CRM automation, AI chatbots, WhatsApp automation, and multilingual support in Telugu, Hindi, and English.",
-  "url": "https://umofi.ai",
-  "telephone": "+91-9553210805",
-  "email": "Umofiai.in@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Hyderabad",
-    "addressRegion": "Telangana",
-    "addressCountry": "IN"
-  },
-  "areaServed": ["Hyderabad", "Telangana", "Secunderabad", "HITEC City", "Gachibowli", "Kukatpally", "Dilsukhnagar"],
-  "sameAs": [],
-  "serviceType": ["AI Lead Generation", "CRM Automation", "AI Chatbots", "WhatsApp Automation", "Email Automation", "Predictive Analytics", "Business Process Automation", "Multilingual AI", "Performance Marketing"],
-  "openingHours": "Mo-Su 00:00-23:59",
-  "priceRange": "₹₹"
-}
+  // ── SOCIAL MEDIA URLS ────────────────────────────────────
+  instagram:  'https://www.instagram.com/umofi_ai',
+  linkedin:   'https://www.linkedin.com/in/umofi-ai-894916421',
+  twitter:    'https://x.com/',
+  youtube:    'https://www.youtube.com/',
 
-
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "Do I need any technical knowledge to use your AI services?","acceptedAnswer": {"@type": "Answer","text": "Not at all. We handle everything from building to integration. You just tell us your business goals and we take care of the rest."}},
-    {"@type": "Question","name": "Can your chatbots speak in Telugu?","acceptedAnswer": {"@type": "Answer","text": "Yes. We build chatbots that communicate naturally in Telugu, Hindi, and English. We are the only AI agency in Hyderabad offering this."}},
-    {"@type": "Question","name": "How long does it take to see results?","acceptedAnswer": {"@type": "Answer","text": "Most clients have their first AI system live within one to three weeks. Results like automated lead capture appear from day one."}},
-    {"@type": "Question","name": "Do you sign long-term contracts?","acceptedAnswer": {"@type": "Answer","text": "No. We believe in earning your trust through results, not contracts. No lock-in periods and no hidden fees."}}
-  ]
-}
+  // ── FORM ENDPOINT ────────────────────────────────────────
+  formEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
+};
+// ═══════════════════════════════════════════════════════════
 
 
 // LOADER
@@ -118,8 +108,6 @@ window.addEventListener('scroll',()=>{
   if(frame)frame.style.transform=`translateY(${scrollY*.12}px)`;
 });
 
-// Typing effect handled by CSS
-
 // FAQ
 function toggleFaq(el){
   const item=el.parentElement;
@@ -161,10 +149,11 @@ async function submitForm(){
     // Dev mode: simulate success without a real endpoint
     await new Promise(r => setTimeout(r, 900));
     showFormSuccess();
+    if(btn){ btn.disabled = false; btn.innerHTML = 'Book a Free AI Audit <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'; }
     return;
   }
 
-  // Build payload — works for both Formspree and Web3Forms
+  // Build payload
   const payload = {
     name,
     phone,
@@ -173,11 +162,6 @@ async function submitForm(){
     message:  msgEl ? msgEl.value.trim() : '',
     _subject: 'New AI Audit Request — Umofi AI',
   };
-
-  // Web3Forms needs the access_key field
-  if(UMOFI_CONFIG.web3formsKey){
-    payload.access_key = UMOFI_CONFIG.web3formsKey;
-  }
 
   try {
     const res = await fetch(endpoint, {
@@ -216,36 +200,6 @@ function showFormError(msg){
   err.textContent = msg;
   setTimeout(() => { if(err) err.textContent = ''; }, 5000);
 }
-
-
-// ╔══════════════════════════════════════════════════════════╗
-// ║           UMOFI AI — EASY CONFIGURATION BLOCK           ║
-// ║  Replace values below with your own details.            ║
-// ║  Do NOT change anything outside this block.             ║
-// ╚══════════════════════════════════════════════════════════╝
-const UMOFI_CONFIG = {
-  // ── CONTACT DETAILS ──────────────────────────────────────
-  phone:      '+91 95532 10805',
-  phoneLink:  'tel:+919553210805',
-  email:      'Umofiai.in@gmail.com',
-  emailLink:  'mailto:Umofiai.in@gmail.com',
-  whatsapp:   'https://wa.me/919553210805',
-
-  // ── SOCIAL MEDIA URLS ────────────────────────────────────
-  // Replace each "#" with your real profile URL
-  instagram:  'https://www.instagram.com/umofi_ai?igsh=MTl6MThyYm9vN3E0aA==',
-  linkedin:   'https://www.linkedin.com/in/umofi-ai-894916421?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
-  twitter:    'https://x.com/YOUR_HANDLE',
-  youtube:    'https://www.youtube.com/@YOUR_CHANNEL',
-
-  // ── FORM ENDPOINT ────────────────────────────────────────
-  // Option A — Formspree:  'https://formspree.io/f/YOUR_FORM_ID'
-  // Option B — Web3Forms:  'https://api.web3forms.com/submit'
-  //            (also set web3formsKey below)
-  formEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
-  web3formsKey: '',   // only needed if using Web3Forms
-};
-// ═══════════════════════════════════════════════════════════
 
 // Apply config to page elements on load
 (function applyConfig(){
@@ -304,9 +258,6 @@ const UMOFI_CONFIG = {
   requestAnimationFrame(draw);
 })();
 
-
-
-
 // SCROLL REVEAL - extended for new classes
 const ioNew = new IntersectionObserver(es => es.forEach(e => {
   if(e.isIntersecting) {
@@ -361,7 +312,7 @@ document.addEventListener('click', e => {
   setTimeout(() => ripple.remove(), 550);
 });
 
-// HOVER MICRO-INTERACTION on CTA buttons, text shimmer
+// HOVER MICRO-INTERACTION on CTA buttons
 document.querySelectorAll('.btn-p').forEach(btn => {
   btn.addEventListener('mouseenter', () => {
     btn.style.backgroundSize = '200% auto';
@@ -378,8 +329,6 @@ document.querySelectorAll('.btn-p').forEach(btn => {
     btn.style.backgroundImage = 'linear-gradient(135deg,var(--p),var(--p2))';
   });
 });
-
-
 
 // KEYBOARD ACCESSIBILITY - focus styles
 document.addEventListener('keydown', e => {
@@ -399,4 +348,3 @@ if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
   const c = document.getElementById('c');
   if(c) c.style.display='none';
 }
-
